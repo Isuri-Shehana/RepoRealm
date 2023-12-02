@@ -44,3 +44,38 @@ document.querySelectorAll('.justify').forEach(function (element) {
     element.addEventListener('click', Justify);
 });
 
+var back = [];
+var present = 0;
+
+function Save() {
+    back.push({
+        content: document.getElementById('Texteditor').innerHTML,
+        alignment: document.getElementById('Texteditor').style.textAlign
+    });
+    present++;
+}
+
+function Apply() {
+    document.getElementById('Texteditor').innerHTML =back[present].content;
+    document.getElementById('Texteditor').style.textAlign = back[present].alignment;
+}
+
+function undo_Icon() {
+    if (present > 0) {
+        present--;
+        Apply();
+    }
+}
+
+function redo_Icon() {
+    if (present < back.length - 1) {
+        present++;
+        Apply();
+    }
+}
+
+document.querySelectorAll('#Texteditor').forEach(function (element) {
+    element.addEventListener('input', function () {
+        Save();
+    });
+});
