@@ -16,6 +16,13 @@ function textColorPicker(){
     document.getElementById('color-rect').style.backgroundColor = color_pick;
 }
 
+function Text_alignment(alignType) {
+    return function () {
+        document.getElementById('Texteditor').style.textAlign = alignType;
+        document.execCommand('justify' + alignType, true, null);
+    }
+} 
+
 var left_Align = Text_alignment('left');
 var Center = Text_alignment('center');
 var right_Align = Text_alignment('right');
